@@ -2,662 +2,167 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>The Grand Menu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صالون داوود للحلاقة | DAWUD FRESURSALON</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Amiri:wght@400;700&display=swap');
-        
         :root {
-            --bg-color: #0a0a0a;
-            --text-color: #f4f4f4;
-            --accent-color: #d4af37; /* لون ذهبي فاخر */
-            --card-bg: #111111;
-            --border-color: #333333;
+            --primary-color: #d4af37;
+            --bg-dark: #121212;
+            --text-light: #f5f5f5;
+            --whatsapp-green: #25d366;
         }
-        
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
         body {
-            font-family: 'Amiri', 'Playfair Display', serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
             margin: 0;
-            padding: 0;
-            padding-bottom: 100px; /* مساحة للسلة العائمة */
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
         }
-        
-        .header {
-            text-align: center;
-            padding: 40px 20px;
-            border-bottom: 1px solid var(--border-color);
-            background: rgba(10, 10, 10, 0.95);
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            backdrop-filter: blur(10px);
-        }
-        
-        h1 {
-            font-family: 'Cinzel', serif;
-            color: var(--accent-color);
-            margin: 0;
-            font-size: 2rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-        }
-        
-        .categories {
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
             display: flex;
-            overflow-x: auto;
-            padding: 15px 20px;
-            gap: 12px;
-            background: var(--bg-color);
-            border-bottom: 1px solid var(--border-color);
-            direction: ltr; /* للحفاظ على ترتيب الأزرار */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
         }
-        
-        .categories::-webkit-scrollbar { display: none; }
-        
-        .cat-btn {
-            background: transparent;
-            color: #888;
-            border: 1px solid var(--border-color);
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-family: 'Cinzel', serif;
-            font-size: 0.85rem;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: all 0.3s ease;
-            letter-spacing: 1px;
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
         }
-        
-        .cat-btn.active, .cat-btn:hover {
-            color: var(--bg-color);
-            background: var(--accent-color);
-            border-color: var(--accent-color);
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            line-height: 1.6;
         }
-        
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-            padding: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
+        .btn-whatsapp {
+            background-color: var(--whatsapp-green);
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
         }
-        
-        .menu-card {
-            background: var(--card-bg);
-            border-radius: 4px;
-            overflow: hidden;
-            border: 1px solid #222;
-            transition: border-color 0.3s ease;
-        }
-        
-        .menu-card:hover {
-            border-color: rgba(212, 175, 55, 0.4);
-        }
-        
-        .img-container {
-            width: 100%;
-            height: 220px;
-            background: #222;
-            overflow: hidden;
-        }
-        
-        .img-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.7s ease;
-        }
-
-        .menu-card:hover .img-container img {
+        .btn-whatsapp:hover {
             transform: scale(1.05);
         }
-        
-        .details {
-            padding: 20px;
+        .services {
+            padding: 60px 20px;
+            max-width: 800px;
+            margin: 0 auto;
         }
-        
-        .name {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: var(--accent-color);
-            letter-spacing: 1px;
-        }
-        
-        .desc {
-            font-size: 1rem;
-            color: #aaa;
-            margin-bottom: 20px;
-            line-height: 1.5;
-            min-height: 40px;
-        }
-        
-        .price-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid #222;
-            padding-top: 15px;
-        }
-        
-        .price {
-            font-family: 'Cinzel', serif;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--text-color);
-            direction: ltr;
-        }
-        
-        .add-btn {
-            background: transparent;
-            color: var(--accent-color);
-            border: 1px solid var(--accent-color);
-            padding: 8px 20px;
-            font-family: 'Amiri', serif;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .add-btn:hover, .add-btn:active {
-            background: var(--accent-color);
-            color: var(--bg-color);
-        }
-
-        /* سلة المشتريات العائمة */
-        .floating-cart {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%) translateY(150%);
-            width: calc(100% - 40px);
-            max-width: 600px;
-            background: rgba(17, 17, 17, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--accent-color);
-            padding: 15px 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 100;
-            direction: ltr;
-        }
-
-        .floating-cart.visible {
-            transform: translateX(-50%) translateY(0);
-        }
-
-        .cart-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .cart-total-price {
-            font-family: 'Cinzel', serif;
-            font-size: 1.2rem;
-            color: var(--accent-color);
-            font-weight: bold;
-        }
-
-        .cart-items-count {
-            font-size: 0.8rem;
-            color: #888;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .view-cart-btn {
-            background: var(--accent-color);
-            color: var(--bg-color);
-            border: none;
-            padding: 10px 20px;
-            font-family: 'Cinzel', serif;
-            font-weight: bold;
-            letter-spacing: 1px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .cart-icon {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
-        }
-
-        /* نافذة الطلب */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(5px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-            z-index: 1000;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        .modal-content {
-            background: var(--bg-color);
-            width: 100%;
-            max-width: 500px;
-            max-height: 85vh;
-            border: 1px solid var(--accent-color);
-            display: flex;
-            flex-direction: column;
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
-        }
-
-        .modal-overlay.active .modal-content {
-            transform: translateY(0);
-        }
-
-        .modal-header {
-            padding: 20px;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-header h2 {
-            font-family: 'Amiri', serif;
-            color: var(--accent-color);
-            margin: 0;
-            font-size: 1.5rem;
-        }
-
-        .close-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-color);
-            cursor: pointer;
-            padding: 5px;
-        }
-
-        .close-icon {
-            width: 24px;
-            height: 24px;
-            stroke: currentColor;
-            stroke-width: 2;
-        }
-
-        .modal-body {
-            padding: 20px;
-            overflow-y: auto;
-            flex-grow: 1;
-        }
-
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-bottom: 15px;
-            margin-bottom: 15px;
-            border-bottom: 1px solid #222;
-        }
-
-        .cart-item-info {
-            flex-grow: 1;
-        }
-
-        .cart-item-name {
-            font-size: 1.1rem;
-            color: var(--text-color);
-            margin-bottom: 5px;
-        }
-
-        .cart-item-price {
-            color: var(--accent-color);
-            font-size: 1rem;
-            direction: ltr;
-            text-align: left;
-            font-family: 'Cinzel', serif;
-        }
-
-        .cart-item-controls {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background: #111;
-            border: 1px solid #333;
-            padding: 5px 10px;
-            direction: ltr;
-        }
-
-        .qty-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-color);
-            cursor: pointer;
-            font-size: 1.2rem;
-            padding: 0 5px;
-        }
-
-        .modal-footer {
-            padding: 20px;
-            background: #111;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .input-group {
-            margin-bottom: 20px;
-        }
-
-        .input-group label {
-            display: block;
-            font-size: 1rem;
-            color: #888;
-            margin-bottom: 8px;
-        }
-
-        .table-input {
-            width: 100%;
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-color);
-            padding: 12px 15px;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .table-input:focus {
-            outline: none;
-            border-color: var(--accent-color);
-        }
-
-        .whatsapp-btn {
-            width: 100%;
-            background: var(--accent-color);
-            color: var(--bg-color);
-            border: none;
-            padding: 15px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-            transition: opacity 0.3s;
-            font-family: 'Amiri', serif;
-        }
-        
-        .whatsapp-btn:hover {
-            opacity: 0.9;
-        }
-
-        .empty-cart-msg {
+        .section-title {
             text-align: center;
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+        .service-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px dashed #333;
+            padding: 15px 0;
+        }
+        .service-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .service-price {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        .info-section {
+            background-color: #1a1a1a;
+            padding: 50px 20px;
+            text-align: center;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+        }
+        .info-card {
+            max-width: 300px;
+        }
+        .info-card i {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #0a0a0a;
+            font-size: 0.9rem;
             color: #888;
-            font-style: italic;
-            padding: 20px 0;
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>The Grand Menu</h1>
-        <p style="color: #888; margin-top: 10px; font-size: 1rem;">تجربة طعام استثنائية</p>
-    </div>
-
-    <div class="categories" id="categories">
-        <!-- Categories injected via JS -->
-    </div>
-
-    <div class="menu-grid" id="menu-grid">
-        <!-- Menu items injected via JS -->
-    </div>
-
-    <!-- السلة العائمة -->
-    <div class="floating-cart" id="floatingCart">
-        <button class="view-cart-btn" onclick="openCartModal()">
-            <svg class="cart-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49A1.003 1.003 0 0 0 20 4H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
-            </svg>
-            VIEW ORDER
-        </button>
-        <div class="cart-info">
-            <span class="cart-items-count" id="cartCountStr">0 Items</span>
-            <span class="cart-total-price" id="cartTotalBar">€0.00</span>
-        </div>
-    </div>
-
-    <!-- نافذة إتمام الطلب -->
-    <div class="modal-overlay" id="orderModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>طلبك الحالي</h2>
-                <button class="close-btn" onclick="closeCartModal()">
-                    <svg class="close-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M18 6L6 18M6 6L18 18" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </button>
-            </div>
-            
-            <div class="modal-body" id="cartItemsContainer">
-                <!-- Cart items injected via JS -->
-            </div>
-
-            <div class="modal-footer">
-                <div class="input-group">
-                    <label>رقم الطاولة *</label>
-                    <input type="text" id="tableNumber" class="table-input" placeholder="مثال: طاولة 4">
-                </div>
-                
-                <button class="whatsapp-btn" onclick="sendOrder()">
-                    إرسال الطلب • <span id="modalTotal" style="font-family: 'Cinzel', serif; direction: ltr; margin-right: 5px;">€0.00</span>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // رقم الواتساب الخاص بك
-        const WHATSAPP_NUMBER = "+43 676 6028127";
-
-        const categories = ["All", "Seafood", "Steaks", "Italian", "Drinks"];
+    <div class="hero">
+        <h1>DAWUD FRESURSALON</h1>
+        <p>فن الحلاقة الفيينية الأصيلة. عناية بالتفاصيل، أجواء مريحة، وأفضل القصات العصرية والكلاسيكية.</p>
         
-        const menuItems = [
-            { id: 1, name: "ذيل الكركند (لوبستر)", cat: "Seafood", desc: "لوبستر مطهو بالزبدة مع الثوم والأعشاب الطازجة", price: 45.00, img: "https://images.unsplash.com/photo-1559742811-822873691df8?w=800&q=80" },
-            { id: 2, name: "طبق سوشي فاخر", cat: "Seafood", desc: "تشكيلة الشيف من الساشيمي والنيجيري الطازج", price: 55.00, img: "https://images.unsplash.com/photo-1579871494447-0811cf80d49d?w=800&q=80" },
-            { id: 3, name: "سمك السلمون المشوي", cat: "Seafood", desc: "سمك السلمون البري مع الهليون وصلصة الهولانديز", price: 32.00, img: "https://images.unsplash.com/photo-1485921325833-c519f76c4927?w=800&q=80" },
-            
-            { id: 4, name: "ستيك توماهوك", cat: "Steaks", desc: "قطعة ريب آي بالعظم وزن 32 أونصة، مشوية بامتياز", price: 89.00, img: "https://images.unsplash.com/photo-1544025162-8a38304918e5?w=800&q=80" },
-            { id: 5, name: "فيليه مينيون", cat: "Steaks", desc: "قطعة لحم تندرلوين طرية مع صوص الخردل", price: 48.00, img: "https://images.unsplash.com/photo-1600891964092-4316c288032e?w=800&q=80" },
-            { id: 6, name: "سترايبلوين واغيو A5", cat: "Steaks", desc: "لحم واغيو ياباني أصلي، يذوب في الفم", price: 120.00, img: "https://images.unsplash.com/photo-1558030006-450675393462?w=800&q=80" },
-            
-            { id: 7, name: "ريزوتو الكمأة (الترافل)", cat: "Italian", desc: "أرز أربوريو مع الكمأة السوداء الطازجة وجبنة البارميزان", price: 28.00, img: "https://images.unsplash.com/photo-1633504581786-316c8002b1b3?w=800&q=80" },
-            { id: 8, name: "سلطة البوراتا", cat: "Italian", desc: "جبنة بوراتا طازجة، طماطم كرزية، وزيت الريحان", price: 22.00, img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=800&q=80" },
-            { id: 9, name: "رافيولي يدوي الصنع", cat: "Italian", desc: "محشو بجبن الريكوتا والسبانخ في زبدة المريمية", price: 26.00, img: "https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=800&q=80" },
-            
-            { id: 10, name: "موهيتو استوائي", cat: "Drinks", desc: "مانجو، باشن فروت، ومياه فوارة منعشة", price: 12.00, img: "https://images.unsplash.com/photo-1536935338-7866a084ba6f?w=800&q=80" },
-            { id: 11, name: "كريم بروليه", cat: "Drinks", desc: "كاسترد الفانيليا الغني مع طبقة كراميل مقرمشة", price: 14.00, img: "https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=800&q=80" },
-            { id: 12, name: "ماكارون فرنسي", cat: "Drinks", desc: "تشكيلة فاخرة من حلوى الماكارون الفرنسية", price: 16.00, img: "https://images.unsplash.com/photo-1569864358642-9d1684040f43?w=800&q=80" }
-        ];
+        <!-- زر الواتساب المربوط برقمك للتجربة -->
+        <a href="https://wa.me/436766028127?text=مرحباً،%20أريد%20حجز%20موعد%20حلاقة" target="_blank" class="btn-whatsapp">
+            <i class="fab fa-whatsapp"></i> احجز موعدك الآن
+        </a>
+    </div>
 
-        let cart = [];
+    <div class="services">
+        <h2 class="section-title">قائمة الخدمات</h2>
+        
+        <div class="service-item">
+            <div class="service-name">قص شعر كلاسيكي</div>
+            <div class="service-price">25€</div>
+        </div>
+        <div class="service-item">
+            <div class="service-name">حلاقة وتحديد اللحية</div>
+            <div class="service-price">15€</div>
+        </div>
+        <div class="service-item">
+            <div class="service-name">الباقة الكاملة (شعر + لحية)</div>
+            <div class="service-price">35€</div>
+        </div>
+        <div class="service-item">
+            <div class="service-name">قص شعر أطفال</div>
+            <div class="service-price">15€</div>
+        </div>
+    </div>
 
-        window.onload = () => {
-            renderCategories();
-            renderMenu("All");
-        };
+    <div class="info-section">
+        <div class="info-card">
+            <i class="fas fa-map-marker-alt"></i>
+            <h3>موقعنا</h3>
+            <p>Klosterneuburger Str, 1200 Wien</p>
+        </div>
+        <div class="info-card">
+            <i class="fas fa-clock"></i>
+            <h3>أوقات العمل</h3>
+            <p>الإثنين - الجمعة: 09:00 ص - 07:00 م<br>السبت والأحد: مغلق</p>
+        </div>
+    </div>
 
-        function renderCategories() {
-            const catContainer = document.getElementById('categories');
-            catContainer.innerHTML = '';
-            categories.forEach((cat, index) => {
-                const btn = document.createElement('button');
-                btn.className = `cat-btn ${index === 0 ? 'active' : ''}`;
-                btn.textContent = cat;
-                btn.onclick = () => {
-                    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    renderMenu(cat);
-                };
-                catContainer.appendChild(btn);
-            });
-        }
+    <footer>
+        <p>&copy; 2026 DAWUD FRESURSALON. جميع الحقوق محفوظة.</p>
+    </footer>
 
-        function renderMenu(category) {
-            const container = document.getElementById('menu-grid');
-            container.innerHTML = '';
-            
-            const filteredItems = category === "All" ? menuItems : menuItems.filter(item => item.cat === category);
-            
-            filteredItems.forEach(item => {
-                const card = `
-                    <div class="menu-card">
-                        <div class="img-container">
-                            <img src="${item.img}" alt="${item.name}" loading="lazy">
-                        </div>
-                        <div class="details">
-                            <div class="name">${item.name}</div>
-                            <div class="desc">${item.desc}</div>
-                            <div class="price-row">
-                                <div class="price">€${item.price.toFixed(2)}</div>
-                                <button class="add-btn" onclick="addToCart(${item.id})">أضف +</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                container.innerHTML += card;
-            });
-        }
-
-        function addToCart(id) {
-            const item = menuItems.find(m => m.id === id);
-            const existingItem = cart.find(c => c.id === id);
-            
-            if (existingItem) {
-                existingItem.qty += 1;
-            } else {
-                cart.push({ ...item, qty: 1 });
-            }
-            
-            updateCartState();
-        }
-
-        function changeQty(id, delta) {
-            const item = cart.find(c => c.id === id);
-            if (!item) return;
-
-            item.qty += delta;
-            if (item.qty <= 0) {
-                cart = cart.filter(c => c.id !== id);
-            }
-
-            updateCartState();
-            renderCartItems();
-        }
-
-        function updateCartState() {
-            const floatingCart = document.getElementById('floatingCart');
-            const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
-            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-
-            if (totalItems > 0) {
-                floatingCart.classList.add('visible');
-                document.getElementById('cartCountStr').innerText = `${totalItems} Items`;
-                document.getElementById('cartTotalBar').innerText = `€${totalPrice.toFixed(2)}`;
-                document.getElementById('modalTotal').innerText = `€${totalPrice.toFixed(2)}`;
-            } else {
-                floatingCart.classList.remove('visible');
-                closeCartModal();
-            }
-        }
-
-        function openCartModal() {
-            renderCartItems();
-            document.getElementById('orderModal').classList.add('active');
-            document.body.style.overflow = 'hidden'; 
-        }
-
-        function closeCartModal() {
-            document.getElementById('orderModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        function renderCartItems() {
-            const container = document.getElementById('cartItemsContainer');
-            
-            if (cart.length === 0) {
-                container.innerHTML = `<div class="empty-cart-msg">سلة الطلبات فارغة.</div>`;
-                return;
-            }
-
-            container.innerHTML = cart.map(item => `
-                <div class="cart-item">
-                    <div class="cart-item-info">
-                        <div class="cart-item-name">${item.name}</div>
-                        <div class="cart-item-price">€${(item.price * item.qty).toFixed(2)}</div>
-                    </div>
-                    <div class="cart-item-controls">
-                        <button class="qty-btn" onclick="changeQty(${item.id}, -1)">-</button>
-                        <span>${item.qty}</span>
-                        <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        function sendOrder() {
-            if (cart.length === 0) return;
-
-            const tableInput = document.getElementById('tableNumber').value.trim();
-            
-            if (!tableInput) {
-                const inputField = document.getElementById('tableNumber');
-                inputField.style.borderColor = 'red';
-                setTimeout(() => inputField.style.borderColor = 'var(--border-color)', 1500);
-                inputField.focus();
-                return;
-            }
-
-            let message = `*طلب جديد - The Grand Menu*\n`;
-            message += `رقم الطاولة: *${tableInput}*\n`;
-            message += `------------------------\n`;
-            
-            cart.forEach(item => {
-                message += `${item.qty}x ${item.name} - €${(item.price * item.qty).toFixed(2)}\n`;
-            });
-            
-            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-            message += `------------------------\n`;
-            message += `*الإجمالي: €${totalPrice.toFixed(2)}*`;
-
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
-            
-            window.open(whatsappUrl, '_blank');
-            closeCartModal();
-        }
-    </script>
 </body>
 </html>
