@@ -1,214 +1,187 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DAWUD FRESURSALON | Premium Barber in Wien</title>
-    <meta name="description" content="Dein Style. Dein Barber. Premium Herrenhaarschnitte, Bartpflege und Styling im 20. Bezirk in Wien. Buche jetzt deinen Termin.">
-    <meta name="keywords" content="Barber Wien, Friseur 1200 Wien, Herrenfriseur, Fade Cut, Bart rasieren, Dawud Fresursalon">
-    
-    <!-- Open Graph SEO -->
-    <meta property="og:title" content="DAWUD FRESURSALON | Premium Barber">
-    <meta property="og:description" content="Premium Herrenhaarschnitte und Bartpflege in 1200 Wien.">
-    <meta property="og:type" content="local.business">
-    
-    <!-- Google Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link rel="stylesheet" href="style.css">
+    <title>DAWUD FRESURSALON | VIP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --dark: #0a0a0a;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--dark);
+            color: #fff;
+            margin: 0;
+            overflow: hidden; /* يمنع التمرير قبل النقر */
+        }
+        
+        /* شاشة الدخول الترحيبية */
+        #splash {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, #1a1a1a 0%, #000 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease;
+        }
+        .enter-btn {
+            background: var(--gold);
+            color: #000;
+            padding: 15px 40px;
+            font-size: 1.5rem;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 900;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            animation: pulse 1.5s infinite;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(212, 175, 55, 0.8); }
+            100% { transform: scale(1); }
+        }
 
-    <!-- Structured Data (SEO) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "HairSalon",
-      "name": "DAWUD FRESURSALON",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "Klosterneuburger Str. 84",
-        "addressLocality": "Wien",
-        "postalCode": "1200",
-        "addressCountry": "AT"
-      },
-      "telephone": "+436766028127",
-      "priceRange": "$$"
-    }
-    </script>
+        /* المحتوى المخفي الذي سيظهر بحركة */
+        #content {
+            display: none;
+            opacity: 0;
+            animation: slideUpFade 1.2s forwards;
+        }
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(60px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            text-align: center;
+            padding: 80px 20px;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            border-bottom: 2px solid var(--gold);
+        }
+        h1 { color: var(--gold); font-size: 3.5rem; margin: 0; letter-spacing: 2px; }
+        
+        .container { max-width: 900px; margin: -30px auto 30px; padding: 20px; position: relative; z-index: 10; }
+        
+        .box {
+            background: var(--glass);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        h2 { color: var(--gold); margin-bottom: 25px; font-size: 1.8rem; }
+        
+        /* جدول الأوقات */
+        table { width: 100%; border-collapse: collapse; font-size: 1.2rem; }
+        td { padding: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .closed { color: #ff4757; font-weight: bold; }
+        
+        /* التقييمات */
+        .stars { color: #f1c40f; font-size: 1.2rem; margin-bottom: 10px; }
+        .review-text { font-size: 1.1rem; line-height: 1.8; color: #ddd; margin-bottom: 20px; font-style: italic; }
+        
+        /* أزرار الحجز */
+        .btn-group { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+        .btn:hover { transform: translateY(-5px); filter: brightness(1.1); }
+        .btn-wa { background: #25D366; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2); }
+        .btn-email { background: #ea4335; box-shadow: 0 10px 20px rgba(234, 67, 53, 0.2); }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.5rem; }
+            .btn { width: 100%; justify-content: center; }
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Intro Animation Screen -->
-    <div id="intro-screen">
-        <div class="intro-logo">DAWUD<br><span>FRESURSALON</span></div>
+    <!-- زر الدخول الإجباري لتشغيل الصوت -->
+    <div id="splash">
+        <button class="enter-btn" onclick="startExperience()">اضغط للدخول لصالون داوود</button>
+    </div>
+    
+    <!-- صوت ترحيبي فخم مخفي -->
+    <audio id="welcomeSound" src="https://www.soundjay.com/misc/sounds/magic-chime-01.mp3"></audio>
+
+    <div id="content">
+        <header>
+            <h1>DAWUD FRESURSALON</h1>
+            <p><i class="fas fa-map-marker-alt" style="color: var(--gold);"></i> Klosterneuburger Str. 84, 1200 Wien</p>
+        </header>
+
+        <div class="container">
+            
+            <div class="box">
+                <h2><i class="far fa-calendar-check"></i> احجز موعدك الآن</h2>
+                <div class="btn-group">
+                    <a href="https://wa.me/436766028127?text=مرحباً، أرغب بحجز موعد في الصالون" target="_blank" class="btn btn-wa">
+                        <i class="fab fa-whatsapp"></i> حجز عبر واتساب
+                    </a>
+                    <a href="mailto:mohamdalsayr6@gmail.com?subject=طلب حجز موعد - Dawud Salon" class="btn btn-email">
+                        <i class="fas fa-envelope"></i> حجز عبر الإيميل
+                    </a>
+                </div>
+            </div>
+
+            <div class="box">
+                <h2><i class="fas fa-clock"></i> ساعات العمل</h2>
+                <table>
+                    <tr><td>الاثنين - الجمعة</td><td>09:00 - 19:00</td></tr>
+                    <tr><td>السبت</td><td>09:00 - 18:00</td></tr>
+                    <tr><td>الأحد</td><td class="closed">مغلق</td></tr>
+                </table>
+            </div>
+
+            <div class="box">
+                <h2><i class="fas fa-star"></i> آراء زوارنا</h2>
+                <div class="stars">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </div>
+                <p class="review-text">"المكان نظيف للغاية والخدمة ممتازة حسب آراء الزوار. يتميز الحلاق بالاحترافية العالية والالتزام الدقيق بالمواعيد."</p>
+            </div>
+
+        </div>
     </div>
 
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <a href="#home" class="logo">DAWUD</a>
-            <div class="menu-toggle" id="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#home">HOME</a></li>
-                <li><a href="#services">SERVICES</a></li>
-                <li><a href="#preise">PREISE</a></li>
-                <li><a href="#about">ÜBER UNS</a></li>
-                <li><a href="#reviews">BEWERTUNGEN</a></li>
-                <li><a href="#kontakt">KONTAKT</a></li>
-                <li><button class="btn-nav" onclick="bookAppointment()">TERMIN BUCHEN</button></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content reveal">
-            <h1>DAWUD<br><span>FRESURSALON</span></h1>
-            <p>Dein Style. Dein Barber.</p>
-            <div class="hero-buttons">
-                <button class="btn-primary" onclick="bookAppointment()">JETZT TERMIN BUCHEN</button>
-                <a href="#preise" class="btn-secondary">PREISE ANSEHEN</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="section">
-        <div class="container">
-            <h2 class="section-title reveal">UNSERE SERVICES</h2>
-            <div class="grid-3">
-                <div class="card reveal">
-                    <i class="fas fa-cut"></i>
-                    <h3>Herrenhaarschnitt</h3>
-                    <p>Klassisch oder modern, perfekt auf dich abgestimmt.</p>
-                </div>
-                <div class="card reveal">
-                    <i class="fas fa-ruler-combined"></i>
-                    <h3>Skin Fade</h3>
-                    <p>Präziser Fade für einen sauberen und scharfen Look.</p>
-                </div>
-                <div class="card reveal">
-                    <i class="fas fa-user-tie"></i>
-                    <h3>Haarschnitt + Bart</h3>
-                    <p>Das Komplettpaket für den perfekten Auftritt.</p>
-                </div>
-                <div class="card reveal">
-                    <i class="fas fa-magic"></i>
-                    <h3>Bartpflege</h3>
-                    <p>Konturen, Trimmen und Rasieren mit heißem Handtuch.</p>
-                </div>
-                <div class="card reveal">
-                    <i class="fas fa-child"></i>
-                    <h3>Kinderhaarschnitt</h3>
-                    <p>Geduld und Style für die jüngsten Gentlemen.</p>
-                </div>
-                <div class="card reveal">
-                    <i class="fas fa-spray-can"></i>
-                    <h3>Styling</h3>
-                    <p>Professionelles Styling für besondere Anlässe.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Preise Section -->
-    <section id="preise" class="section bg-darker">
-        <div class="container">
-            <h2 class="section-title reveal">PREISE</h2>
-            <div class="price-grid" id="price-list">
-                <!-- Dynamically populated via JS -->
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="section">
-        <div class="container about-flex reveal">
-            <div class="about-text">
-                <h2 class="section-title text-left">ÜBER UNS</h2>
-                <p>Willkommen bei <strong>DAWUD FRESURSALON</strong> – wo Handwerkskunst auf modernen Lifestyle trifft. Wir stehen für absolute Präzision, höchste Qualität und eine entspannte, professionelle Atmosphäre.</p>
-                <p>Sauberkeit und Kundenzufriedenheit haben bei uns oberste Priorität. Egal ob klassischer Schnitt, moderner Skin Fade oder präzise Bartpflege, unser Ziel ist es, deinen individuellen Style perfekt umzusetzen.</p>
-                <p>Nimm Platz, entspanne dich und überlass uns den Rest.</p>
-            </div>
-            <div class="about-image">
-                <!-- Placeholder for a high-quality salon image -->
-                <div class="img-placeholder"><i class="fas fa-store"></i></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Reviews Section -->
-    <section id="reviews" class="section bg-darker">
-        <div class="container">
-            <h2 class="section-title reveal">KUNDENBEWERTUNGEN</h2>
-            <div class="grid-3">
-                <div class="review-card reveal">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p>"Sehr guter Service und sauberer Haarschnitt. Kann ich nur empfehlen!"</p>
-                    <span class="reviewer">— Beispielbewertung</span>
-                </div>
-                <div class="review-card reveal">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p>"Sehr professionell, freundlich und genau. Ich komme gerne wieder."</p>
-                    <span class="reviewer">— Beispielbewertung</span>
-                </div>
-                <div class="review-card reveal">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p>"Top Barber, sehr sauber gearbeitet und tolles Ergebnis."</p>
-                    <span class="reviewer">— Beispielbewertung</span>
-                </div>
-            </div>
-            <div class="text-center reveal" style="margin-top: 30px;">
-                <a href="#" id="google-reviews-link" target="_blank" class="btn-secondary">Google Bewertungen ansehen</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Location & Hours Section -->
-    <section id="kontakt" class="section">
-        <div class="container">
-            <h2 class="section-title reveal">WO DU UNS FINDEST</h2>
-            <div class="contact-grid reveal">
-                <div class="info-box">
-                    <h3>ADRESSE</h3>
-                    <p>Klosterneuburger Str. 84<br>1200 Wien, Austria</p>
-                    <button class="btn-outline" onclick="openMaps()"><i class="fas fa-map-marker-alt"></i> ROUTE ÖFFNEN</button>
-                    
-                    <h3 style="margin-top: 30px;">KONTAKT</h3>
-                    <p><i class="fab fa-whatsapp gold"></i> +43 676 6028127</p>
-                </div>
-                
-                <div class="hours-box">
-                    <h3>ÖFFNUNGSZEITEN</h3>
-                    <div id="status-badge" class="status-badge">Prüfe Status...</div>
-                    <ul class="hours-list" id="hours-list">
-                        <!-- Populated by JS -->
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container footer-content">
-            <div class="footer-logo">DAWUD <span>FRESURSALON</span></div>
-            <p>Klosterneuburger Str. 84, 1200 Wien</p>
-            <div class="social-links">
-                <a href="#" id="instagram-link" target="_blank"><i class="fab fa-instagram"></i></a>
-            </div>
-            <p class="copyright">&copy; <span id="year"></span> DAWUD FRESURSALON. Alle Rechte vorbehalten.</p>
-        </div>
-    </footer>
-
-    <!-- Floating WhatsApp Button -->
-    <a href="javascript:void(0)" onclick="bookAppointment()" class="floating-wa">
-        <i class="fab fa-whatsapp"></i>
-    </a>
-
-    <script src="script.js"></script>
+    <script>
+        function startExperience() {
+            // تشغيل الصوت
+            document.getElementById('welcomeSound').play();
+            
+            // إخفاء الشاشة الافتتاحية
+            const splash = document.getElementById('splash');
+            splash.style.opacity = '0';
+            
+            setTimeout(() => {
+                splash.style.display = 'none';
+                // تفعيل التمرير وإظهار الموقع بحركة انسيابية
+                document.body.style.overflow = 'auto';
+                document.getElementById('content').style.display = 'block';
+            }, 800);
+        }
+    </script>
 </body>
 </html>
