@@ -1,3 +1,192 @@
+    <!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAWUD FRISEURSALON | Premium VIP</title>
+    <!-- خطوط ألمانية فخمة -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- أيقونات FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* إعدادات الألوان */
+        :root {
+            --gold: #d4af37;
+            --dark: #0f0f0f;
+            --gray: #1a1a1a;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(212, 175, 55, 0.2);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark);
+            color: #fff;
+            overflow: hidden; /* إيقاف التمرير قبل الدخول */
+        }
+
+        /* --- شاشة الدخول --- */
+        #splash {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, #1a1a1a 0%, #000 100%);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 9999; transition: transform 1s ease-in-out, opacity 1s ease;
+        }
+        .splash-logo { font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--gold); margin-bottom: 40px; letter-spacing: 4px; text-align: center; }
+        .enter-btn {
+            background: transparent; color: var(--gold); padding: 15px 50px; font-size: 1.2rem;
+            font-family: 'Poppins', sans-serif; border: 2px solid var(--gold); border-radius: 5px;
+            cursor: pointer; text-transform: uppercase; letter-spacing: 2px;
+            transition: all 0.3s; animation: pulse 2s infinite;
+        }
+        .enter-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 30px rgba(212, 175, 55, 0.5); }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(212,175,55,0.4); } 70% { box-shadow: 0 0 0 20px rgba(212,175,55,0); } 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0); } }
+
+        /* --- المحتوى الرئيسي --- */
+        #content { display: none; opacity: 0; animation: fadeIn 1.5s forwards; }
+        @keyframes fadeIn { to { opacity: 1; } }
+        .container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+        .section-title { text-align: center; font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); margin-bottom: 40px; margin-top: 60px; }
+
+        /* --- الهيدر والفيديو --- */
+        header {
+            position: relative; height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center; overflow: hidden;
+            border-bottom: 2px solid var(--gold);
+        }
+        .video-bg {
+            position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%;
+            width: auto; height: auto; transform: translateX(-50%) translateY(-50%); z-index: -2;
+            object-fit: cover; filter: brightness(0.4);
+        }
+        .header-content { z-index: 1; }
+        header h1 { font-family: 'Playfair Display', serif; font-size: 4rem; color: var(--gold); margin-bottom: 10px; text-shadow: 2px 2px 10px #000; }
+        header p { font-size: 1.2rem; font-weight: 300; letter-spacing: 2px; text-shadow: 1px 1px 5px #000; }
+
+        /* --- نموذج الحجز الذكي --- */
+        .booking-section { background: var(--glass); padding: 40px; border-radius: 10px; border: 1px solid var(--glass-border); margin-bottom: 80px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .booking-form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label { margin-bottom: 5px; color: var(--gold); font-size: 0.95rem; }
+        .form-control { background: rgba(0,0,0,0.5); border: 1px solid #444; color: #fff; padding: 15px; border-radius: 5px; font-family: inherit; font-size: 1rem; }
+        .form-control:focus { outline: none; border-color: var(--gold); }
+        .btn-book { grid-column: span 2; background: var(--gold); color: #000; font-weight: bold; font-size: 1.2rem; padding: 15px; border: none; border-radius: 5px; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+        .btn-book:hover { filter: brightness(1.2); transform: scale(1.02); }
+
+        /* --- الشبكات (خدمات/منتجات/فريق) --- */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 40px; }
+        .card-box { background: var(--glass); border: 1px solid var(--glass-border); text-align: center; padding: 30px; border-radius: 10px; transition: 0.3s; }
+        .card-box:hover { border-color: var(--gold); transform: translateY(-10px); }
+        h3 { color: var(--gold); font-size: 1.5rem; margin-bottom: 5px; }
+        .price { color: var(--gold); font-size: 1.5rem; font-weight: bold; margin-top: 15px; }
+        
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
+        .gallery-item { width: 100%; height: 250px; object-fit: cover; border-radius: 10px; border: 1px solid var(--glass-border); transition: 0.3s; filter: grayscale(50%); }
+        .gallery-item:hover { filter: grayscale(0%); transform: scale(1.03); border-color: var(--gold); z-index: 2; position: relative; }
+
+        @media (max-width: 768px) { .booking-form { grid-template-columns: 1fr; } .btn-book { grid-column: 1; } header h1 { font-size: 2.5rem; } }
+    </style>
+</head>
+<body>
+
+    <!-- الدخولية والصوت -->
+    <div id="splash">
+        <div class="splash-logo">DAWUD VIP</div>
+        <button class="enter-btn" onclick="startExperience()">Eintreten & Erleben</button>
+    </div>
+    <audio id="welcomeSound" src="https://www.soundjay.com/misc/sounds/magic-chime-01.mp3"></audio>
+
+    <div id="content">
+        <!-- الهيدر مع خلفية فيديو -->
+        <header>
+            <video autoplay loop muted playsinline class="video-bg" id="bg-vid">
+                <source src="https://cdn.pixabay.com/video/2016/09/13/5064-180808940_large.mp4" type="video/mp4">
+            </video>
+            <div class="header-content">
+                <h1>DAWUD FRISEURSALON</h1>
+                <p>Meisterhafte Handwerkskunst in Wien</p>
+            </div>
+        </header>
+
+        <div class="container">
+            
+            <!-- نظام الحجز الذكي المربوط بالواتساب -->
+            <div class="booking-section">
+                <h2 class="section-title" style="margin-top: 0; margin-bottom: 10px;">Termin Online Buchen</h2>
+                <p style="text-align: center; color: #ddd; margin-bottom: 30px;">Wählen Sie Ihren gewünschten Service und Termin aus.</p>
+                
+                <form class="booking-form" id="bookingForm" onsubmit="sendToWhatsApp(event)">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Ihr Name (الاسم)</label>
+                        <input type="text" id="clientName" class="form-control" placeholder="Max Mustermann" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-phone"></i> Telefonnummer (الهاتف)</label>
+                        <input type="tel" id="clientPhone" class="form-control" placeholder="+43 676 ..." required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-cut"></i> Dienstleistung (الخدمة)</label>
+                        <select id="serviceType" class="form-control">
+                            <option>Herrenhaarschnitt (25€)</option>
+                            <option>Bartrasur & Pflege (15€)</option>
+                            <option>VIP Paket (50€)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-users"></i> Friseur wählen (الحلاق)</label>
+                        <select id="barberName" class="form-control">
+                            <option>Egal (Wer frei ist)</option>
+                            <option>Dawud</option>
+                            <option>Ali</option>
+                            <option>Omar</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="far fa-calendar-alt"></i> Datum (التاريخ)</label>
+                        <input type="date" id="bookingDate" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="far fa-clock"></i> Uhrzeit (الوقت)</label>
+                        <select id="bookingTime" class="form-control">
+                            <option>09:00</option>
+                            <option>10:00</option>
+                            <option>11:30</option>
+                            <option>14:00</option>
+                            <option>16:00</option>
+                            <option>18:00</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-book">Jetzt Verbindlich Buchen <i class="fab fa-whatsapp"></i></button>
+                </form>
+            </div>
+
+            <!-- الخدمات -->
+            <h2 class="section-title">Unsere Dienstleistungen</h2>
+            <div class="grid-3">
+                <div class="card-box">
+                    <i class="fas fa-cut fa-2x" style="color:var(--gold); margin-bottom:15px;"></i>
+                    <h3>Herrenhaarschnitt</h3>
+                    <div class="price">Ab 25€</div>
+                </div>
+                <div class="card-box">
+                    <i class="fas fa-magic fa-2x" style="color:var(--gold); margin-bottom:15px;"></i>
+                    <h3>Bartrasur & Pflege</h3>
+                    <div class="price">Ab 15€</div>
+                </div>
+                <div class="card-box">
+                    <i class="fas fa-crown fa-2x" style="color:var(--gold); margin-bottom:15px;"></i>
+                    <h3>VIP Paket</h3>
+                    <div class="price">50€</div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    <!-- أكواد الجافاسكريبت للتشغيل الذكي -->
     <script>
         // 1. وظيفة الدخول وتشغيل الصوت والفيديو
         function startExperience() {
@@ -15,11 +204,10 @@
             }, 1000);
         }
 
-        // 2. وظيفة إرسال الحجز للواتساب (محدثة للجوال)
+        // 2. وظيفة إرسال الحجز للواتساب 
         function sendToWhatsApp(event) {
-            event.preventDefault(); // يمنع الصفحة من التحديث لإتمام العملية
+            event.preventDefault(); 
 
-            // جلب البيانات التي كتبها الزبون في الخانات
             const name = document.getElementById('clientName').value;
             const phone = document.getElementById('clientPhone').value;
             const service = document.getElementById('serviceType').value;
@@ -27,16 +215,16 @@
             const date = document.getElementById('bookingDate').value;
             const time = document.getElementById('bookingTime').value;
 
-            // تنسيق الرسالة لتصلك واضحة
-            const message = `مرحباً، أرغب بتأكيد حجز موعد جديد:\n\n👤 الاسم: ${name}\n📱 رقم الهاتف: ${phone}\n💈 الخدمة: ${service}\n👨‍🦱 الحلاق: ${barber}\n📅 التاريخ: ${date}\n⏰ الوقت: ${time}`;
+            // تنسيق الرسالة
+            const message = `مرحباً، أرغب بتأكيد حجز موعد جديد:\n\n👤 الاسم: ${name}\n📱 رقم الهاتف: ${phone}\n💈 الخدمة: ${service}\n👨‍🦱 الحلاق المفضل: ${barber}\n📅 التاريخ: ${date}\n⏰ الوقت: ${time}`;
 
-            // رقمك المربوط بالواتساب
+            // رقم الواتساب
             const whatsappNumber = "436766028127";
             
-            // دمج الرقم مع الرسالة
+            // التوجيه المباشر لتطبيق الواتساب (مضمون للجوال)
             const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-            
-            // توجيه الزبون مباشرة لتطبيق الواتساب (طريقة مضمونة 100% للجوال)
             window.location.href = whatsappURL;
         }
     </script>
+</body>
+</html>
