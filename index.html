@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DAWUD FRISEURSALON | Premium</title>
+    <title>DAWUD FRISEURSALON | Premium VIP</title>
     <!-- خطوط ألمانية فخمة -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- أيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --gold: #d4af37;
             --dark: #0f0f0f;
-            --gray: #222;
+            --gray: #1a1a1a;
             --glass: rgba(255, 255, 255, 0.03);
             --glass-border: rgba(212, 175, 55, 0.2);
         }
@@ -25,122 +26,94 @@
             overflow: hidden; /* إيقاف التمرير قبل الدخول */
         }
 
-        /* 1. الدخولية الفخمة (Splash Screen) */
+        /* --- شاشة الدخول الفخمة --- */
         #splash {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: radial-gradient(circle, #1a1a1a 0%, #000 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: transform 1s ease-in-out, opacity 1s ease;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 9999; transition: transform 1s ease-in-out, opacity 1s ease;
         }
-        .splash-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            color: var(--gold);
-            margin-bottom: 40px;
-            letter-spacing: 4px;
-        }
+        .splash-logo { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--gold); margin-bottom: 40px; letter-spacing: 4px; text-align: center; }
         .enter-btn {
-            background: transparent;
-            color: var(--gold);
-            padding: 15px 50px;
-            font-size: 1.2rem;
-            font-family: 'Poppins', sans-serif;
-            border: 2px solid var(--gold);
-            border-radius: 5px;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: all 0.3s;
-            animation: pulse 2s infinite;
+            background: transparent; color: var(--gold); padding: 15px 50px; font-size: 1.2rem;
+            font-family: 'Poppins', sans-serif; border: 2px solid var(--gold); border-radius: 5px;
+            cursor: pointer; text-transform: uppercase; letter-spacing: 2px;
+            transition: all 0.3s; animation: pulse 2s infinite;
         }
         .enter-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 30px rgba(212, 175, 55, 0.5); }
-        
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
-            70% { box-shadow: 0 0 0 20px rgba(212, 175, 55, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
-        }
+        @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(212,175,55,0.4); } 70% { box-shadow: 0 0 0 20px rgba(212,175,55,0); } 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0); } }
 
-        /* 2. المحتوى الرئيسي للموقع */
-        #content {
-            display: none;
-            opacity: 0;
-            animation: fadeIn 1.5s forwards;
-        }
+        /* --- المحتوى الرئيسي --- */
+        #content { display: none; opacity: 0; animation: fadeIn 1.5s forwards; }
         @keyframes fadeIn { to { opacity: 1; } }
 
-        /* الهيدر مع صورة خلفية */
+        .container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+        .section-title { text-align: center; font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); margin-bottom: 40px; }
+
+        /* --- 1. خلفية الفيديو (Video Header) --- */
         header {
-            height: 70vh;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)), url('https://images.unsplash.com/photo-1585747860715-2ba37e788b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover fixed;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
+            position: relative; height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center; overflow: hidden;
             border-bottom: 2px solid var(--gold);
         }
-        header h1 { font-family: 'Playfair Display', serif; font-size: 4rem; color: var(--gold); margin-bottom: 10px; }
-        header p { font-size: 1.2rem; font-weight: 300; letter-spacing: 2px; }
+        .video-bg {
+            position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%;
+            width: auto; height: auto; transform: translateX(-50%) translateY(-50%); z-index: -2;
+            object-fit: cover; filter: brightness(0.4);
+        }
+        .header-content { z-index: 1; }
+        header h1 { font-family: 'Playfair Display', serif; font-size: 4rem; color: var(--gold); margin-bottom: 10px; text-shadow: 2px 2px 10px #000; }
+        header p { font-size: 1.2rem; font-weight: 300; letter-spacing: 2px; text-shadow: 1px 1px 5px #000; }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 60px 20px; }
+        /* --- 2. فريق العمل (Das Team) --- */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 80px; }
+        .team-card { background: var(--glass); border: 1px solid var(--glass-border); text-align: center; padding: 30px; border-radius: 10px; transition: 0.3s; }
+        .team-card:hover { border-color: var(--gold); transform: translateY(-10px); }
+        .team-img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; border: 3px solid var(--gold); margin-bottom: 15px; }
+        .team-card h3 { color: var(--gold); font-size: 1.5rem; margin-bottom: 5px; }
+
+        /* --- 3. المنتجات (Shop/Produkte) --- */
+        .product-card { background: var(--gray); border-radius: 10px; overflow: hidden; text-align: center; border: 1px solid #333; transition: 0.3s; }
+        .product-card:hover { border-color: var(--gold); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        .product-img { width: 100%; height: 200px; object-fit: cover; }
+        .product-info { padding: 20px; }
+        .product-price { color: var(--gold); font-size: 1.5rem; font-weight: bold; margin: 10px 0; }
+        .btn-buy { background: transparent; color: var(--gold); border: 1px solid var(--gold); padding: 10px 20px; border-radius: 5px; cursor: pointer; transition: 0.3s; width: 100%; font-family: inherit; }
+        .btn-buy:hover { background: var(--gold); color: #000; }
+
+        /* --- 4. نموذج الحجز المباشر (Booking Calendar Form) --- */
+        .booking-section { background: var(--glass); padding: 40px; border-radius: 10px; border: 1px solid var(--glass-border); margin-bottom: 80px; }
+        .booking-form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label { margin-bottom: 5px; color: var(--gold); font-size: 0.9rem; }
+        .form-control { background: rgba(0,0,0,0.5); border: 1px solid #444; color: #fff; padding: 15px; border-radius: 5px; font-family: inherit; }
+        .form-control:focus { outline: none; border-color: var(--gold); }
+        .btn-book { grid-column: span 2; background: var(--gold); color: #000; font-weight: bold; font-size: 1.2rem; padding: 15px; border: none; border-radius: 5px; cursor: pointer; transition: 0.3s; }
+        .btn-book:hover { filter: brightness(1.2); }
         
-        .section-title {
-            text-align: center; font-family: 'Playfair Display', serif;
-            font-size: 2.5rem; color: var(--gold); margin-bottom: 40px;
-        }
+        @media (max-width: 768px) { .booking-form { grid-template-columns: 1fr; } .btn-book { grid-column: 1; } }
 
-        /* 3. قسم الخدمات */
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .service-card {
-            background: var(--glass); border: 1px solid var(--glass-border);
-            padding: 30px; border-radius: 10px; text-align: center; transition: 0.3s;
+        /* --- 5. خريطة جوجل التفاعلية --- */
+        .map-container { width: 100%; height: 400px; border-radius: 10px; overflow: hidden; border: 1px solid var(--glass-border); margin-bottom: 40px; }
+        .map-container iframe { width: 100%; height: 100%; border: none; }
+
+        /* --- 6. الزر العائم (Floating Action Button) --- */
+        .fab-whatsapp {
+            position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white;
+            width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center;
+            align-items: center; font-size: 2rem; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+            text-decoration: none; z-index: 1000; transition: transform 0.3s; animation: bounce 2s infinite;
         }
+        .fab-whatsapp:hover { transform: scale(1.1); }
+        @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateY(0);} 40% {transform: translateY(-15px);} 60% {transform: translateY(-7px);} }
+        
+        /* تنسيقات عامة للخدمات والتقييمات من النسخة السابقة */
+        .service-card { background: var(--glass); border: 1px solid var(--glass-border); padding: 30px; border-radius: 10px; text-align: center; transition: 0.3s; }
         .service-card:hover { transform: translateY(-10px); border-color: var(--gold); }
-        .service-card h3 { font-size: 1.5rem; margin-bottom: 10px; }
         .service-card .price { color: var(--gold); font-size: 1.5rem; font-weight: bold; }
-
-        /* 4. معرض الصور (Galerie) */
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; }
-        .gallery-item {
-            width: 100%; height: 250px; object-fit: cover;
-            border-radius: 10px; border: 1px solid var(--glass-border);
-            transition: 0.3s; filter: grayscale(50%);
-        }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin-bottom: 80px; }
+        .gallery-item { width: 100%; height: 250px; object-fit: cover; border-radius: 10px; border: 1px solid var(--glass-border); transition: 0.3s; filter: grayscale(50%); }
         .gallery-item:hover { filter: grayscale(0%); transform: scale(1.02); border-color: var(--gold); }
-
-        /* 5. التقييمات (Bewertungen) */
-        .reviews-container { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; }
-        .review-box {
-            background: var(--glass); border-left: 3px solid var(--gold);
-            padding: 20px; width: 350px; border-radius: 5px;
-        }
-        .stars { color: var(--gold); margin-bottom: 10px; }
-        .review-text { font-size: 0.95rem; font-style: italic; color: #ccc; margin-bottom: 15px; }
-        .reviewer { font-weight: bold; text-transform: uppercase; font-size: 0.85rem; }
-
-        /* 6. معلومات التواصل والحجز */
-        .info-section { display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; margin-top: 60px; }
-        .info-box { background: var(--gray); padding: 40px; border-radius: 10px; flex: 1; min-width: 300px; text-align: center; }
-        
-        table { width: 100%; text-align: left; margin-top: 20px; border-collapse: collapse; }
-        td { padding: 10px 0; border-bottom: 1px solid #333; }
-        .closed { color: #e74c3c; }
-
-        .btn-group { display: flex; flex-direction: column; gap: 15px; margin-top: 25px; }
-        .btn {
-            padding: 15px; border-radius: 5px; text-decoration: none; color: #fff;
-            font-weight: bold; display: flex; justify-content: center; align-items: center; gap: 10px;
-            transition: 0.3s;
-        }
-        .btn:hover { filter: brightness(1.2); transform: translateY(-3px); }
-        .btn-wa { background: #25D366; }
-        .btn-email { background: #ea4335; }
     </style>
 </head>
 <body>
@@ -150,118 +123,153 @@
         <div class="splash-logo">DAWUD VIP</div>
         <button class="enter-btn" onclick="startExperience()">Eintreten & Erleben</button>
     </div>
-    <!-- تأثير صوتي فخم عند الدخول -->
     <audio id="welcomeSound" src="https://www.soundjay.com/misc/sounds/magic-chime-01.mp3"></audio>
 
+    <!-- الزر العائم للواتساب -->
+    <a href="https://wa.me/436766028127?text=Hallo,%20ich%20möchte%20einen%20Termin%20vereinbaren." target="_blank" class="fab-whatsapp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <div id="content">
-        <!-- الهيدر -->
+        <!-- 1. الهيدر مع خلفية فيديو -->
         <header>
-            <h1>DAWUD FRISEURSALON</h1>
-            <p>Meisterhafte Handwerkskunst in Wien</p>
+            <video autoplay loop muted playsinline class="video-bg" id="bg-vid">
+                <source src="https://cdn.pixabay.com/video/2016/09/13/5064-180808940_large.mp4" type="video/mp4">
+            </video>
+            <div class="header-content">
+                <h1>DAWUD FRISEURSALON</h1>
+                <p>Meisterhafte Handwerkskunst in Wien</p>
+            </div>
         </header>
 
         <div class="container">
             
-            <!-- الخدمات -->
+            <!-- 2. فريق العمل -->
+            <h2 class="section-title">Unser Team</h2>
+            <div class="grid-3">
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1618077360395-f3068be8e001?auto=format&fit=crop&w=300&q=80" class="team-img" alt="Dawud">
+                    <h3>Dawud</h3>
+                    <p style="color:#aaa;">Master Barber & Gründer</p>
+                </div>
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6?auto=format&fit=crop&w=300&q=80" class="team-img" alt="Ali">
+                    <h3>Ali</h3>
+                    <p style="color:#aaa;">Senior Barber</p>
+                </div>
+                <div class="team-card">
+                    <img src="https://images.unsplash.com/photo-1520338661084-680395057c93?auto=format&fit=crop&w=300&q=80" class="team-img" alt="Omar">
+                    <h3>Omar</h3>
+                    <p style="color:#aaa;">Spezialist für Bartpflege</p>
+                </div>
+            </div>
+
+            <!-- 4. نظام الحجز المباشر (Booking Calendar) -->
+            <div class="booking-section">
+                <h2 class="section-title" style="margin-bottom: 20px;">Termin Online Buchen</h2>
+                <p style="text-align: center; color: #ddd; margin-bottom: 30px;">Wählen Sie Ihren gewünschten Service und Termin aus.</p>
+                <form class="booking-form" onsubmit="event.preventDefault(); alert('Dies ist eine Demo. Im echten System wird der Termin nun gespeichert.');">
+                    <div class="form-group">
+                        <label>Ihr Name</label>
+                        <input type="text" class="form-control" placeholder="Max Mustermann" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Telefonnummer</label>
+                        <input type="tel" class="form-control" placeholder="+43 676 ..." required>
+                    </div>
+                    <div class="form-group">
+                        <label>Dienstleistung</label>
+                        <select class="form-control">
+                            <option>Herrenhaarschnitt (25€)</option>
+                            <option>Bartrasur & Pflege (15€)</option>
+                            <option>VIP Paket (50€)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Friseur wählen</label>
+                        <select class="form-control">
+                            <option>Egal (Wer frei ist)</option>
+                            <option>Dawud</option>
+                            <option>Ali</option>
+                            <option>Omar</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Datum</label>
+                        <input type="date" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Uhrzeit</label>
+                        <select class="form-control">
+                            <option>09:00</option>
+                            <option>10:00</option>
+                            <option>11:30</option>
+                            <option>14:00</option>
+                            <option>16:00</option>
+                            <option>18:00</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-book">Jetzt Verbindlich Buchen <i class="fas fa-check-circle"></i></button>
+                </form>
+            </div>
+
+            <!-- الخدمات (من النسخة السابقة) -->
             <h2 class="section-title">Unsere Dienstleistungen</h2>
-            <div class="services-grid">
+            <div class="grid-3">
                 <div class="service-card">
                     <i class="fas fa-cut fa-2x" style="color:var(--gold); margin-bottom:15px;"></i>
                     <h3>Herrenhaarschnitt</h3>
-                    <p>Präziser Schnitt inkl. Waschen und Styling.</p>
                     <div class="price">Ab 25€</div>
                 </div>
                 <div class="service-card">
                     <i class="fas fa-magic fa-2x" style="color:var(--gold); margin-bottom:15px;"></i>
                     <h3>Bartrasur & Pflege</h3>
-                    <p>Klassische Rasur mit heißem Handtuch.</p>
                     <div class="price">Ab 15€</div>
                 </div>
                 <div class="service-card">
                     <i class="fas fa-crown fa-2x" style="color:var(--gold); margin-bottom:15px;"></i>
                     <h3>VIP Paket</h3>
-                    <p>Haarschnitt, Bartpflege, Gesichtsmaske & Massage.</p>
                     <div class="price">50€</div>
                 </div>
             </div>
 
-            <!-- معرض الصور -->
-            <h2 class="section-title" style="margin-top: 80px;">Galerie</h2>
-            <div class="gallery-grid">
-                <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=600&q=80" class="gallery-item" alt="Barber Cut">
-                <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=600&q=80" class="gallery-item" alt="Beard Trim">
-                <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=600&q=80" class="gallery-item" alt="Salon Interior">
-                <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=600&q=80" class="gallery-item" alt="Barber Tools">
-            </div>
-
-            <!-- التقييمات -->
-            <h2 class="section-title" style="margin-top: 80px;">Kundenbewertungen</h2>
-            <div class="reviews-container">
-                <div class="review-box">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="review-text">"Der Ort ist extrem sauber und der Service ist laut Kundenmeinungen ausgezeichnet. Der Friseur zeichnet sich durch hohe Professionalität aus."</p>
-                    <div class="reviewer">- Alexander M.</div>
-                </div>
-                <div class="review-box">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="review-text">"Bester Friseur in ganz Wien! Sehr sauber, schnell und extrem professionell. Komme immer wieder gerne."</p>
-                    <div class="reviewer">- Lukas W.</div>
-                </div>
-                <div class="review-box">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="review-text">"Ohne Termin schnell drangekommen, super Ergebnis. Top Preis-Leistungs-Verhältnis!"</p>
-                    <div class="reviewer">- David K.</div>
-                </div>
-                <div class="review-box">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
-                    <p class="review-text">"Dawud ist ein wahrer Künstler. Präzise Arbeit und die Heißtuch-Rasur ist ein Traum."</p>
-                    <div class="reviewer">- Stefan S.</div>
-                </div>
-                <div class="review-box">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="review-text">"Sehr freundliches Personal und tolle Atmosphäre. Perfekte Einhaltung der Termine."</p>
-                    <div class="reviewer">- Michael T.</div>
-                </div>
-                <div class="review-box">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="review-text">"Luxuriöses Erlebnis von Anfang bis Ende. Der einzige Friseur, dem ich meine Haare anvertraue."</p>
-                    <div class="reviewer">- Julian H.</div>
-                </div>
-                <div class="review-box">
-                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="review-text">"Ausgezeichnete Beratung und top Styling. 5 Sterne absolut verdient!"</p>
-                    <div class="reviewer">- Kevin R.</div>
-                </div>
-            </div>
-
-            <!-- الحجز والأوقات -->
-            <div class="info-section">
-                <!-- أوقات العمل -->
-                <div class="info-box">
-                    <h3 style="color:var(--gold); margin-bottom:15px;"><i class="fas fa-clock"></i> Öffnungszeiten</h3>
-                    <table>
-                        <tr><td>Montag - Freitag</td><td>09:00 - 19:00</td></tr>
-                        <tr><td>Samstag</td><td>09:00 - 18:00</td></tr>
-                        <tr><td>Sonntag</td><td class="closed">Geschlossen</td></tr>
-                    </table>
-                    <p style="margin-top:20px; font-size:0.9rem; color:#aaa;">
-                        <i class="fas fa-map-marker-alt" style="color:var(--gold);"></i> Klosterneuburger Str. 84, 1200 Wien
-                    </p>
-                </div>
-
-                <!-- أزرار الحجز -->
-                <div class="info-box">
-                    <h3 style="color:var(--gold); margin-bottom:15px;"><i class="far fa-calendar-check"></i> Termin Buchen</h3>
-                    <p style="color:#ddd; font-size:0.9rem;">Buchen Sie Ihren Termin schnell und einfach über unsere Kanäle.</p>
-                    <div class="btn-group">
-                        <a href="https://wa.me/436766028127?text=Hallo,%20ich%20möchte%20einen%20Termin%20vereinbaren." target="_blank" class="btn btn-wa">
-                            <i class="fab fa-whatsapp fa-lg"></i> Buchen via WhatsApp
-                        </a>
-                        <a href="mailto:mohamdalsayr6@gmail.com?subject=Terminanfrage - Dawud Salon" class="btn btn-email">
-                            <i class="fas fa-envelope fa-lg"></i> Buchen via E-Mail
-                        </a>
+            <!-- 3. متجر المنتجات (Produkte) -->
+            <h2 class="section-title">Unsere Premium Produkte</h2>
+            <div class="grid-3">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=400&q=80" class="product-img" alt="Bartöl">
+                    <div class="product-info">
+                        <h3>Luxus Bartöl</h3>
+                        <p style="color:#aaa; font-size:0.9rem;">Für einen weichen und gepflegten Bart.</p>
+                        <div class="product-price">19.90€</div>
+                        <button class="btn-buy"><i class="fas fa-shopping-cart"></i> Reservieren</button>
                     </div>
                 </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1596178065887-1198b6148b2b?auto=format&fit=crop&w=400&q=80" class="product-img" alt="Haarwachs">
+                    <div class="product-info">
+                        <h3>Premium Haarwachs</h3>
+                        <p style="color:#aaa; font-size:0.9rem;">Starker Halt mit mattem Finish.</p>
+                        <div class="product-price">14.50€</div>
+                        <button class="btn-buy"><i class="fas fa-shopping-cart"></i> Reservieren</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=400&q=80" class="product-img" alt="Rasierpinsel">
+                    <div class="product-info">
+                        <h3>Klassischer Rasierpinsel</h3>
+                        <p style="color:#aaa; font-size:0.9rem;">Echthaar für den perfekten Schaum.</p>
+                        <div class="product-price">24.00€</div>
+                        <button class="btn-buy"><i class="fas fa-shopping-cart"></i> Reservieren</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. خريطة جوجل التفاعلية -->
+            <h2 class="section-title">Hier finden Sie uns</h2>
+            <div class="map-container">
+                <!-- خريطة حقيقية لشارع Klosterneuburger Str. 84, Wien -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2657.940428612192!2d16.3644073!3d48.2272379!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x476d07b4f5b5b5b5%3A0x1a2b3c4d5e6f7g8h!2sKlosterneuburger%20Str.%2084%2C%201200%20Wien%2C%20Austria!5e0!3m2!1sen!2s!4v1610000000000!5m2!1sen!2s" allowfullscreen="" loading="lazy"></iframe>
             </div>
 
         </div>
@@ -272,14 +280,16 @@
             // تشغيل الصوت
             document.getElementById('welcomeSound').play();
             
-            // إخفاء الشاشة الافتتاحية بحركة انسيابية للأعلى
+            // التأكد من تشغيل الفيديو (لأن بعض المتصفحات توقفه)
+            document.getElementById('bg-vid').play();
+            
+            // إخفاء الشاشة الافتتاحية
             const splash = document.getElementById('splash');
             splash.style.transform = 'translateY(-100%)';
             splash.style.opacity = '0';
             
             setTimeout(() => {
                 splash.style.display = 'none';
-                // تفعيل التمرير وإظهار الموقع
                 document.body.style.overflow = 'auto';
                 document.getElementById('content').style.display = 'block';
             }, 1000);
