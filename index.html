@@ -12,7 +12,6 @@
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            /* خلفية ياسمين شامي مع طبقة داكنة للفخامة */
             background-image: linear-gradient(rgba(10, 10, 10, 0.85), rgba(10, 10, 10, 0.95)), url('https://images.unsplash.com/photo-1541844053589-346841d0b34c?q=80&w=1920&auto=format&fit=crop');
             background-size: cover;
             background-attachment: fixed;
@@ -56,7 +55,6 @@
             text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
         }
         .menu-item {
-            /* تأثير الزجاج الفاخر */
             background: rgba(30, 30, 30, 0.6);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
@@ -78,7 +76,7 @@
             height: 90px;
             border-radius: 12px;
             object-fit: cover;
-            margin-left: 15px; /* مسافة من اليسار لأن الاتجاه عربي */
+            margin-left: 15px;
             border: 1px solid var(--gold);
             box-shadow: 0 4px 8px rgba(0,0,0,0.4);
         }
@@ -176,8 +174,19 @@
 
     <div class="container">
         <!-- قسم المقبلات -->
-        <h2 class="section-title">المقبلات الباردة</h2>
+        <h2 class="section-title">المقبلات والفتات</h2>
         
+        <div class="menu-item">
+            <!-- صورة الفتة الشامية -->
+            <img src="image_3.png" alt="الفتة الشامية" class="item-img" onerror="this.src='https://images.unsplash.com/photo-1633504581786-316c8002b1b9?q=80&w=300&auto=format&fit=crop'">
+            <div class="item-details">
+                <h3>الفتة الشامية</h3>
+                <p>خبز محمص مع حمص ولبن وطحينة، ومزينة بالصنوبر.</p>
+                <span class="item-price">9.50 €</span>
+            </div>
+            <button class="add-btn" onclick="addToCart('الفتة الشامية', 9.50)">إضافة</button>
+        </div>
+
         <div class="menu-item">
             <img src="https://images.unsplash.com/photo-1633504581786-316c8002b1b9?q=80&w=300&auto=format&fit=crop" alt="حمص" class="item-img">
             <div class="item-details">
@@ -188,18 +197,30 @@
             <button class="add-btn" onclick="addToCart('حمص بيروتي', 6.50)">إضافة</button>
         </div>
 
-        <div class="menu-item">
-            <img src="https://images.unsplash.com/photo-1628268909376-e824ab74f63c?q=80&w=300&auto=format&fit=crop" alt="متبل" class="item-img">
-            <div class="item-details">
-                <h3>متبل باذنجان</h3>
-                <p>باذنجان مشوي على الفحم مع الطحينة وحبات الرمان.</p>
-                <span class="item-price">7.00 €</span>
-            </div>
-            <button class="add-btn" onclick="addToCart('متبل باذنجان', 7.00)">إضافة</button>
-        </div>
-
         <!-- قسم الأطباق الرئيسية -->
         <h2 class="section-title">الأطباق الرئيسية</h2>
+
+        <div class="menu-item">
+            <!-- صورة المقلوبة -->
+            <img src="image.png" alt="المقلوبة" class="item-img" onerror="this.src='https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=300&auto=format&fit=crop'">
+            <div class="item-details">
+                <h3>المقلوبة</h3>
+                <p>رز مع باذنجان أو خضار ولحمة أو دجاج، بتنقلب بالصحن عند التقديم.</p>
+                <span class="item-price">18.50 €</span>
+            </div>
+            <button class="add-btn" onclick="addToCart('المقلوبة', 18.50)">إضافة</button>
+        </div>
+
+        <div class="menu-item">
+            <!-- صورة المحاشي -->
+            <img src="image_2.png" alt="المحاشي" class="item-img" onerror="this.src='https://images.unsplash.com/photo-1645696301019-35adcc18fc21?q=80&w=300&auto=format&fit=crop'">
+            <div class="item-details">
+                <h3>المحاشي</h3>
+                <p>كوسا وباذنجان محشيين رز ولحمة، مطبوخين بصلصة البندورة.</p>
+                <span class="item-price">17.00 €</span>
+            </div>
+            <button class="add-btn" onclick="addToCart('المحاشي', 17.00)">إضافة</button>
+        </div>
 
         <div class="menu-item">
             <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?q=80&w=300&auto=format&fit=crop" alt="مشاوي" class="item-img">
@@ -209,16 +230,6 @@
                 <span class="item-price">24.00 €</span>
             </div>
             <button class="add-btn" onclick="addToCart('مشاوي مشكلة VIP', 24.00)">إضافة</button>
-        </div>
-
-        <div class="menu-item">
-            <img src="https://images.unsplash.com/photo-1645696301019-35adcc18fc21?q=80&w=300&auto=format&fit=crop" alt="شاورما" class="item-img">
-            <div class="item-details">
-                <h3>شاورما عربي دجاج</h3>
-                <p>قطع شاورما الدجاج المحمصة مع كريم الثوم والمخلل.</p>
-                <span class="item-price">14.50 €</span>
-            </div>
-            <button class="add-btn" onclick="addToCart('شاورما عربي دجاج', 14.50)">إضافة</button>
         </div>
     </div>
 
@@ -243,7 +254,6 @@
             total += itemPrice;
             document.getElementById('total-price').innerText = total.toFixed(2);
             
-            // إضافة اهتزاز خفيف للزر عند الإضافة ليعطي تجربة مستخدم تفاعلية
             alert("تمت إضافة: " + itemName + " بنجاح!");
         }
 
